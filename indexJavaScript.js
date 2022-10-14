@@ -1,9 +1,4 @@
-let gameResults = game();
-window.alert(`${[gameResults.winner]}\n\n`+
-`Your Score: ${gameResults.playerScore}\n`+
-`Computer Score: ${gameResults.computerScore}`
-);
-console.log(`\n${[gameResults.winner]}`);
+ game();
 function game(){
     let playerScore=0;
     let computerScore=0;
@@ -34,13 +29,11 @@ function game(){
    winner="Game Over";
    if (playerScore==computerScore)
    winner="TIE";
-
-   let gameResults={
-    "playerScore":playerScore,
-    "computerScore":computerScore,
-    "winner":winner
-   }
-   return gameResults;
+   window.alert(`${[winner]}\n\n`+
+   `Your Score: ${playerScore}\n`+
+   `Computer Score: ${computerScore}`
+   );
+   console.log(`\n${[winner]}`);
 }
 
 function playRound(plaerSelection,computerSelection){
