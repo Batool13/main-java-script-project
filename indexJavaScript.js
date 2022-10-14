@@ -24,7 +24,7 @@ function game(){
    }
    let allRoundsWinner;
    if (playerScore>computerScore)
-   allRoundsWinner="You WON"
+   allRoundsWinner="🎊🤩🎊 You WON 🎊🤩🎊"
    if (playerScore<computerScore)
    allRoundsWinner="Game Over"
    if (playerScore==computerScore)
