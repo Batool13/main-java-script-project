@@ -1,4 +1,9 @@
-game();
+let gameResults = game();
+window.alert(`${[gameResults.winner]}\n\n`+
+`Your Score: ${gameResults.playerScore}\n`+
+`Computer Score: ${gameResults.computerScore}`
+);
+console.log(`\n${[gameResults.winner]}`);
 function game(){
     let playerScore=0;
     let computerScore=0;
@@ -15,18 +20,27 @@ function game(){
             case "tie":
                 break;
         }
-    console.log(`\ncomputer selection: ${computerSelection}\nyour selection: ${playerSelection}`)
-    console.log(`Your Score: ${playerScore}\ncomputer Score: ${computerScore}`);
+    console.log(`\n-------- Round: ${i+1} --------\n`+
+    `computer selection: ${computerSelection}\n`+
+    `your selection: ${playerSelection}\n\n`+
+    `Your Score: ${playerScore}\n`+
+    `computer Score: ${computerScore}`
+    );    
    }
    let winner;
    if (playerScore>computerScore)
-   winner="🎊🤩🎊 You WON 🎊🤩🎊"
+   winner="🎊🤩🎊 You WON 🎊🤩🎊";
    if (playerScore<computerScore)
-   winner="Game Over"
+   winner="Game Over";
    if (playerScore==computerScore)
-   winner="TIE"
-   window.alert(`${[winner]}\n\nYour Score: ${playerScore}\ncomputer Score: ${computerScore}`);
-   console.log(`${[winner]}`);
+   winner="TIE";
+
+   let gameResults={
+    "playerScore":playerScore,
+    "computerScore":computerScore,
+    "winner":winner
+   }
+   return gameResults;
 }
 
 function playRound(plaerSelection,computerSelection){
@@ -47,8 +61,7 @@ function playRound(plaerSelection,computerSelection){
 
 function computerPlay() {
     let rockPaperSissors;
-    let random0_2 = getRndInteger(0,2);
-    switch (random0_2) {
+    switch (getRndInteger(0,2)){
         case 0:
             rockPaperSissors = "ROCK";
             break;
@@ -63,11 +76,12 @@ function computerPlay() {
 
 function playerPlay(){
     let playerInput;
-    playerInput = prompt("Your Turn to Play (Rock , Paper or Sissors)").toUpperCase();
+    playerInput = prompt("Your Turn to Play (Rock , Paper or Sissors)")
+    .toUpperCase();
     if(playerInput=="ROCK" || playerInput=="PAPER" || playerInput=="SISSORS" )
     return playerInput;
     else {
-        window.alert("only (ROCK , PAPER or SISSORS) are accpted");
+        window.alert("only (Rock,Paper or Sissors) are accpted");
         return playerPlay();  
     } 
 }
