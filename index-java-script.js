@@ -8,15 +8,15 @@ function game() {
         const computerSelection=computerPlay();
         switch(playRound(playerSelection,computerSelection)){
             case "computer":
-                computerScore++;;
+                computerScore++;
                 break;
             case "player":
-                playerScore++;;
+                playerScore++;
                 break;
             case "tie":
                 break;
         }
-    console.log(`\n-------- Round: ${i+1} --------\n`+
+    console.log (`\n-------- Round: ${i+1} --------\n`+
     `computer selection: ${computerSelection}\n`+
     `your selection: ${playerSelection}\n\n`+
     `Your Score: ${playerScore}\n`+
@@ -30,7 +30,7 @@ function game() {
    finalResult="Game Over";
    if (playerScore==computerScore)
    finalResult="TIE";
-   window.alert(`${[finalResult]}\n\n`+
+   window.alert (`${[finalResult]}\n\n`+
    `Your Score: ${playerScore}\n`+
    `Computer Score: ${computerScore}`
    );
@@ -47,36 +47,28 @@ function playRound (playrSelection,computerSelection) {
         return "player";
     }
     else 
-        return "computer";
-    
+        return "computer"; 
 }
 
-function computerPlay() {;
-    switch (computerRanNum=getRndInteger(rockPaperSissors.length)) {
-        case 0:
-            return rockPaperSissors[0];
-            break;
-        case 1:
-            return rockPaperSissors[1];
-            break;
-        case 2:
-            return rockPaperSissors[2];
-    }
+function computerPlay () {
+    return rockPaperSissors[getRndInteger(rockPaperSissors.length)];
 }
 
-function playerPlay() {
+function playerPlay () {
     let playerInput;
-    playerInput = prompt("Your Turn to Play (Rock , Paper or Sissors)")
-    .toUpperCase();
-    if(playerInput=="ROCK" || playerInput=="PAPER" || playerInput=="SISSORS" )
+    let isthere;
+    playerInput = prompt ("Your Turn to Play (Rock , Paper or Sissors)").toUpperCase();
+    rockPaperSissors.forEach (element => {if(playerInput==element) isthere=true;
+    });
+    if (isthere)
     return playerInput;
-    else {
-        window.alert("only (Rock,Paper or Sissors) are accpted");
-        return playerPlay();  
+      else {
+        window.alert ("only (Rock,Paper or Sissors) are accpted");
+        return playerPlay ();
+      }
     } 
-}
 
-function getRndInteger(length) {
-    return Math.floor(Math.random() * length);
+function getRndInteger (length) {
+    return Math.floor (Math.random()*length);
 }
 
