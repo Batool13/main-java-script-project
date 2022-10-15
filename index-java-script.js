@@ -22,32 +22,32 @@ function game(){
     `computer Score: ${computerScore}`
     );    
    }
-   let winner;
+   let finalResult;
    if (playerScore>computerScore)
-   winner="🎊🤩🎊 You WON 🎊🤩🎊";
+   finalResult="🎊🤩🎊 You WON 🎊🤩🎊";
    if (playerScore<computerScore)
-   winner="Game Over";
+   finalResult="Game Over";
    if (playerScore==computerScore)
-   winner="TIE";
-   window.alert(`${[winner]}\n\n`+
+   finalResult="TIE";
+   window.alert(`${[finalResult]}\n\n`+
    `Your Score: ${playerScore}\n`+
    `Computer Score: ${computerScore}`
    );
-   console.log(`\n${[winner]}`);
+   console.log(`\n${[finalResult]}`);
 }
 
-function playRound(plaerSelection,computerSelection){
-    if(plaerSelection==computerSelection){
+function playRound(playrSelection,computerSelection){
+    if(playrSelection==computerSelection){
         return "tie";
     }
-    else if ((plaerSelection=="ROCK" && computerSelection=="SISSORS")
-    || (plaerSelection=="SISSORS" && computerSelection=="PAPER")
-    || (plaerSelection=="PAPER" && computerSelection=="ROCK")){
+    else if ((playrSelection=="ROCK" && computerSelection=="SISSORS")
+    || (playrSelection=="SISSORS" && computerSelection=="PAPER")
+    || (playrSelection=="PAPER" && computerSelection=="ROCK")){
         return "player";
     }
-    else if ((computerSelection=="ROCK" && plaerSelection=="SISSORS")
-    || (computerSelection=="SISSORS" && plaerSelection=="PAPER")
-    || (computerSelection=="PAPER" && plaerSelection=="ROCK")){
+    else if ((computerSelection=="ROCK" && playrSelection=="SISSORS")
+    || (computerSelection=="SISSORS" && playrSelection=="PAPER")
+    || (computerSelection=="PAPER" && playrSelection=="ROCK")){
         return "computer";
     }
 }
