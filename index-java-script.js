@@ -1,16 +1,17 @@
+let rockPaperSissors = ["ROCK","PAPER","SISSORS"];
 game();
-function game(){
+function game() {
     let playerScore=0;
     let computerScore=0;
-    for (let i=0;i<5;i++){
+    for (let i=0;i<5;i++) {
         const playerSelection=playerPlay();
         const computerSelection=computerPlay();
         switch(playRound(playerSelection,computerSelection)){
             case "computer":
-                computerScore=computerScore+1;
+                computerScore++;;
                 break;
             case "player":
-                playerScore=playerScore+1;
+                playerScore++;;
                 break;
             case "tie":
                 break;
@@ -33,10 +34,10 @@ function game(){
    `Your Score: ${playerScore}\n`+
    `Computer Score: ${computerScore}`
    );
-   console.log(`\n${[finalResult]}`);
+   console.log (`\n${[finalResult]}`);
 }
 
-function playRound(playrSelection,computerSelection){
+function playRound (playrSelection,computerSelection) {
     if(playrSelection==computerSelection){
         return "tie";
     }
@@ -45,29 +46,25 @@ function playRound(playrSelection,computerSelection){
     || (playrSelection=="PAPER" && computerSelection=="ROCK")){
         return "player";
     }
-    else if ((computerSelection=="ROCK" && playrSelection=="SISSORS")
-    || (computerSelection=="SISSORS" && playrSelection=="PAPER")
-    || (computerSelection=="PAPER" && playrSelection=="ROCK")){
+    else 
         return "computer";
-    }
+    
 }
 
-function computerPlay() {
-    let rockPaperSissors;
-    switch (getRndInteger(0,2)){
+function computerPlay() {;
+    switch (computerRanNum=getRndInteger(rockPaperSissors.length)) {
         case 0:
-            rockPaperSissors = "ROCK";
+            return rockPaperSissors[0];
             break;
         case 1:
-            rockPaperSissors = "PAPER";
+            return rockPaperSissors[1];
             break;
         case 2:
-            rockPaperSissors = "SISSORS";
+            return rockPaperSissors[2];
     }
-    return rockPaperSissors;
 }
 
-function playerPlay(){
+function playerPlay() {
     let playerInput;
     playerInput = prompt("Your Turn to Play (Rock , Paper or Sissors)")
     .toUpperCase();
@@ -79,7 +76,7 @@ function playerPlay(){
     } 
 }
 
-function getRndInteger(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) ) + min;
+function getRndInteger(length) {
+    return Math.floor(Math.random() * length);
 }
 
