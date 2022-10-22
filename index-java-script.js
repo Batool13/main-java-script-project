@@ -1,12 +1,55 @@
 let rockPaperSissors = ["ROCK","PAPER","SISSORS"];
-game();
-function game() {
-    let playerScore=0;
-    let computerScore=0;
-    for (let i=0;i<5;i++) {
-        const playerSelection=playerPlay();
-        const computerSelection=computerPlay();
-        switch(playRound(playerSelection,computerSelection)){
+let playerScore=0;
+let computerScore=0;
+
+const rock = document.createElement ('button');
+rock.setAttribute('class','rock-sissors-paper-button rock-background-img');
+document.body.appendChild (rock);
+rock.addEventListener ('click', ()=> game('ROCK'));
+rock.addEventListener ('click',opacityAnimate);
+const paper = document.createElement ('button');
+paper.setAttribute ('class','rock-sissors-paper-button paper-background-img')
+document.body.appendChild (paper);
+paper.addEventListener ('click', ()=> game('PAPER'));
+paper.addEventListener ('click',opacityAnimate);
+const sissors = document.createElement ('button');
+sissors.setAttribute ('class','rock-sissors-paper-button sissors-background-img')
+document.body.appendChild (sissors);
+sissors.addEventListener ('click',()=>  game("SISSORS"));
+sissors.addEventListener ('click',opacityAnimate);
+
+function opacityAnimate () {
+    this.animate([
+       { // from
+         opacity: 0,
+         color: "#fff"
+       },
+       { // to
+         opacity: 1,
+         color: "#000"
+       }
+     ], 2000);
+     return;
+
+}
+const result_div = document.createElement ('div');
+result_div.setAttribute ('class' , 'div-results');
+document.body.appendChild (result_div);
+
+result_div.textContent= "Player VS Computer";
+const score_div = document.createElement ('div');
+score_div.setAttribute ('class' , 'div-results');
+document.body.appendChild (score_div);
+
+const final_result_div = document.createElement ('div');
+final_result_div.setAttribute ('class' , 'div-results');
+
+function game(playerSelection) {
+    final_result_div.textContent="";
+    let getPlayerSelection = playerSelection;
+    console.log (playerSelection);
+        const computerSelection=computerPlay ();
+        switch (playRound (playerSelection,computerSelection)) {
             case "computer":
                 computerScore++;
                 break;
@@ -14,31 +57,21 @@ function game() {
                 playerScore++;
                 break;
             case "tie":
-                break;
-        }
-    console.log (`\n-------- Round: ${i+1} --------\n`+
-    `computer selection: ${computerSelection}\n`+
-    `your selection: ${playerSelection}\n\n`+
-    `Your Score: ${playerScore}\n`+
-    `computer Score: ${computerScore}`
-    );    
+                break;  
    }
-   let finalResult;
-   if (playerScore>computerScore)
-   finalResult="🎊🤩🎊 You WON 🎊🤩🎊";
-   if (playerScore<computerScore)
-   finalResult="Game Over";
-   if (playerScore==computerScore)
-   finalResult="TIE";
-   window.alert (`${[finalResult]}\n\n`+
-   `Your Score: ${playerScore}\n`+
-   `Computer Score: ${computerScore}`
-   );
-   console.log (`\n${[finalResult]}`);
+
+   score_div.textContent= playerScore +" | "+ computerScore;
+   if ( playerScore==5 || computerScore==5)
+   {
+    if (checkWinner (playerScore,computerScore) ) {
+     playerScore=0;
+     computerScore=0;
+    }
+   }
 }
 
 function playRound (playrSelection,computerSelection) {
-    if(playrSelection==computerSelection){
+    if (playrSelection == computerSelection) {
         return "tie";
     }
     else if ((playrSelection=="ROCK" && computerSelection=="SISSORS")
@@ -51,24 +84,22 @@ function playRound (playrSelection,computerSelection) {
 }
 
 function computerPlay () {
-    return rockPaperSissors[getRndInteger(rockPaperSissors.length)];
+    return rockPaperSissors [ getRndInteger (rockPaperSissors.length) ];
 }
 
-function playerPlay () {
-    let playerInput;
-    let isthere;
-    playerInput = prompt ("Your Turn to Play (Rock , Paper or Sissors)").toUpperCase();
-    rockPaperSissors.forEach (element => {if(playerInput==element) isthere=true;
-    });
-    if (isthere)
-    return playerInput;
-      else {
-        window.alert ("only (Rock,Paper or Sissors) are accpted");
-        return playerPlay ();
-      }
-    } 
 
 function getRndInteger (length) {
     return Math.floor (Math.random()*length);
+}
+
+function checkWinner (playerScore,computerScore) {
+    console.log (playerScore,computerScore);
+
+     document.body.appendChild (final_result_div);
+     if (computerScore > playerScore)
+     final_result_div.textContent= "Game Over";
+     if (playerScore > computerScore)
+     final_result_div.textContent= "🎊🤩🎊 You WON 🎊🤩🎊";
+     return(true);
 }
 

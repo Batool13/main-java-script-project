@@ -1,0 +1,40 @@
+body , html{
+  background-color: antiquewhite;
+  margin: 0%;
+}
+.rock-sissors-paper-button
+{
+background: none;
+border: 0ch;
+background-position: center;
+background-repeat: no-repeat;
+background-size:100%;
+height: 400px;
+width: 400px;
+background-repeat: no-repeat;
+}
+.rock-background-img{
+    background-image: url(./assets/rock.svg);
+}
+.paper-background-img
+{
+    background-image: url(./assets/paper.svg);
+}
+.sissors-background-img
+{
+    background-image: url(./assets/sissors.svg);
+}
+.div-results
+{
+    align-items: center;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    background-color: whitesmoke;
+    margin: 0% 10% 0% 10%;
+    padding: .1%;    
+}
+/* .rock-sissors-paper-img
+{
+height: 200px;
+} */
